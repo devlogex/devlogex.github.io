@@ -1,7 +1,7 @@
 ---
 title: "My First Blog Post"
 date: "2024-07-22"
-author: "Haku"
+author: "Devlogex"
 tags: ["React", "JavaScript", "Web Development"]
 ---
 
