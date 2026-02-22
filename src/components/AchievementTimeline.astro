@@ -1,0 +1,127 @@
+---
+interface Achievement {
+  id: string;
+  title: string;
+  category: string;
+  date: string;
+  description: string;
+}
+
+interface Props {
+  achievements: Achievement[];
+}
+
+const { achievements } = Astro.props;
+
+const sortedAchievements = [...achievements].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
+const categoryColors: Record<string, string> = {
+  reading: '#3b82f6',
+  coding: '#10b981',
+  fitness: '#f59e0b',
+  learning: '#8b5cf6',
+  personal: '#ec4899',
+};
+
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<div class="timeline">
+  {sortedAchievements.map((achievement) => (
+    <div class="achievement-item">
+      <div class="achievement-marker" style={`background-color: ${categoryColors[achievement.category] || '#64748b'}`}></div>
+      <div class="achievement-content">
+        <div class="achievement-header">
+          <h3>{achievement.title}</h3>
+          <span class="achievement-category" style={`background-color: ${categoryColors[achievement.category] || '#64748b'}`}>
+            {achievement.category}
+          </span>
+        </div>
+        <p class="achievement-description">{achievement.description}</p>
+        <time class="achievement-date">{formatDate(achievement.date)}</time>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+  }
+
+  .achievement-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .achievement-marker {
+    position: absolute;
+    left: -2.5rem;
+    top: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 3px solid var(--color-bg);
+  }
+
+  .achievement-content {
+    background: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .achievement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .achievement-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .achievement-category {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    color: white;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .achievement-description {
+    color: var(--color-text-muted);
+    margin: 0.5rem 0;
+  }
+
+  .achievement-date {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+</style>

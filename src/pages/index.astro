@@ -1,17 +1,124 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AchievementTimeline from '../components/AchievementTimeline.astro';
+import GoalProgress from '../components/GoalProgress';
+import achievements from '../data/achievements.json';
+import goals from '../data/goals.json';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="devlogex - Life Tracker">
+  <div class="container">
+    <section class="hero">
+      <h1>Welcome to My Life Journey</h1>
+      <p>Tracking my goals, achievements, and growth one day at a time.</p>
+    </section>
+
+    <section class="stats-overview">
+      <div class="stat-card">
+        <div class="stat-number">{achievements.length}</div>
+        <div class="stat-label">Achievements</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{goals.length}</div>
+        <div class="stat-label">Active Goals</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">
+          {goals.reduce((sum, goal) => sum + goal.current, 0)}
+        </div>
+        <div class="stat-label">Total Progress</div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Current Goals</h2>
+      <div class="goals-preview">
+        {goals.slice(0, 3).map((goal) => (
+          <GoalProgress goal={goal} client:load />
+        ))}
+      </div>
+      <a href="/goals" class="view-all-link">View all goals →</a>
+    </section>
+
+    <section class="content-section">
+      <h2>Recent Achievements</h2>
+      <AchievementTimeline achievements={achievements.slice(0, 5)} />
+      <a href="#achievements" class="view-all-link">View all achievements →</a>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 3rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  .stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+  }
+
+  .content-section {
+    margin-bottom: 4rem;
+  }
+
+  .content-section h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .goals-preview {
+    margin-bottom: 1rem;
+  }
+
+  .view-all-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s;
+  }
+
+  .view-all-link:hover {
+    transform: translateX(5px);
+  }
+</style>

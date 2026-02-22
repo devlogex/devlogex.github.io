@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "title": "Read 24 books in 2026",
+    "category": "reading",
+    "target": 24,
+    "current": 3,
+    "unit": "books",
+    "startDate": "2026-01-01",
+    "endDate": "2026-12-31",
+    "color": "#3b82f6"
+  },
+  {
+    "id": "2",
+    "title": "Complete 100 GitHub contributions",
+    "category": "coding",
+    "target": 100,
+    "current": 45,
+    "unit": "contributions",
+    "startDate": "2026-01-01",
+    "endDate": "2026-03-31",
+    "color": "#10b981"
+  },
+  {
+    "id": "3",
+    "title": "Workout 150 days this year",
+    "category": "fitness",
+    "target": 150,
+    "current": 38,
+    "unit": "days",
+    "startDate": "2026-01-01",
+    "endDate": "2026-12-31",
+    "color": "#f59e0b"
+  }
+]

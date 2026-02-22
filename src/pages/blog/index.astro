@@ -1,0 +1,144 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout title="Blog - devlogex">
+  <div class="container">
+    <header class="page-header">
+      <h1>Blog</h1>
+      <p>Thoughts, learnings, and reflections on my journey</p>
+    </header>
+
+    {posts.length === 0 ? (
+      <div class="empty-state">
+        <p>No blog posts yet. Create your first post in <code>src/content/posts/</code></p>
+      </div>
+    ) : (
+      <div class="posts-grid">
+        {posts.map((post) => (
+          <article class="post-card">
+            <a href={`/blog/${post.slug}`}>
+              <h2>{post.data.title}</h2>
+              <p class="post-description">{post.data.description}</p>
+              <div class="post-meta">
+                <time>{formatDate(post.data.pubDate)}</time>
+                {post.data.tags && (
+                  <div class="tags">
+                    {post.data.tags.map((tag) => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .empty-state code {
+    background: var(--color-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .post-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+  }
+
+  .post-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-card h2 {
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .post-description {
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .post-meta time {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--color-bg);
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+  }
+</style>
