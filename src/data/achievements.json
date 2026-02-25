@@ -5,19 +5,5 @@
     "category": "reading",
     "date": "2026-02-15",
     "description": "Finished reading this transformative book about building better habits"
-  },
-  {
-    "id": "2",
-    "title": "Daily coding streak: 30 days",
-    "category": "coding",
-    "date": "2026-02-10",
-    "description": "Maintained a 30-day coding streak on GitHub"
-  },
-  {
-    "id": "3",
-    "title": "Morning workout routine",
-    "category": "fitness",
-    "date": "2026-02-22",
-    "description": "Completed today's morning workout session"
   }
 ]

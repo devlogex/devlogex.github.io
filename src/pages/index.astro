@@ -4,13 +4,23 @@ import AchievementTimeline from '../components/AchievementTimeline.astro';
 import GoalProgress from '../components/GoalProgress';
 import achievements from '../data/achievements.json';
 import goals from '../data/goals.json';
+import { frontmatter as identityFrontmatter } from '../data/identity.md';
+
+const { statements } = identityFrontmatter;
 ---
 
 <BaseLayout title="devlogex - Life Tracker">
   <div class="container">
-    <section class="hero">
-      <h1>Welcome to My Life Journey</h1>
-      <p>Tracking my goals, achievements, and growth one day at a time.</p>
+    <section class="identity-section">
+      <h1 class="identity-heading">Who Am I</h1>
+      <div class="identity-grid">
+        {statements.map((item: { icon: string; text: string; color: string }) => (
+          <div class="identity-card" style={`--accent: ${item.color}`}>
+            <span class="identity-icon">{item.icon}</span>
+            <p class="identity-text">{item.text}</p>
+          </div>
+        ))}
+      </div>
     </section>
 
     <section class="stats-overview">
@@ -49,23 +59,53 @@ import goals from '../data/goals.json';
 </BaseLayout>
 
 <style>
-  .hero {
-    text-align: center;
-    padding: 3rem 0;
+  .identity-section {
     margin-bottom: 3rem;
   }
 
-  .hero h1 {
+  .identity-heading {
+    margin-bottom: 1.25rem;
     background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 1rem;
   }
 
-  .hero p {
-    font-size: 1.25rem;
-    color: var(--color-text-muted);
+  .identity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .identity-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .identity-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+  }
+
+  .identity-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .identity-text {
+    color: var(--color-text);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin: 0;
   }
 
   .stats-overview {
