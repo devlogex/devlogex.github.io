@@ -31,5 +31,16 @@
     "startDate": "2026-01-01",
     "endDate": "2026-12-31",
     "color": "#10b981"
+  },
+  {
+    "id": "4",
+    "title": "I want to achieve financial freedom",
+    "category": "business",
+    "target": 1,
+    "current": 0,
+    "unit": "business",
+    "startDate": "2026-01-01",
+    "endDate": "2026-12-31",
+    "color": "#8b5cf6"
   }
 ]
