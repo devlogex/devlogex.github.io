@@ -5,5 +5,12 @@
     "category": "reading",
     "date": "2026-02-15",
     "description": "Finished reading this transformative book about building better habits"
+  },
+  {
+    "id": "2",
+    "title": "Published first blog post: Technology, AI, and the Future of Business",
+    "category": "writing",
+    "date": "2026-03-01",
+    "description": "Wrote and published a reflection on how AI and technology reduce friction and reshape how work is done"
   }
 ]
