@@ -14,5 +14,3 @@ About two decades ago, companies used desktop software to manage employees inste
 Now, AI represents the next major shift. Instead of manually searching and comparing products across websites, people can ask AI to analyze options and recommend the best choice, often with detailed explanations.
 
 However, despite these advances, technology does not change the fundamental principles of society, such as supply and demand. What technology really does is reduce friction in our daily activities, making work faster, simpler, and more efficient.
-
-In the future, the companies that succeed will likely be those that use AI not just as a tool, but as a way to redesign how work is done.
