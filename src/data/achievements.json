@@ -26,5 +26,12 @@
     "category": "writing",
     "date": "2026-03-29",
     "description": "Explored why shifting from task completion to workflow design is essential in the age of AI"
+  },
+  {
+    "id": "5",
+    "title": "Completed 'Domain-Driven Design Quickly' by Abel Avram",
+    "category": "reading",
+    "date": "2026-06-07",
+    "description": "Finished reading this concise introduction to Domain-Driven Design, covering ubiquitous language, bounded contexts, and strategic design"
   }
 ]
