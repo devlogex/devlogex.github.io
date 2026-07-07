@@ -33,5 +33,12 @@
     "category": "reading",
     "date": "2026-06-07",
     "description": "Finished reading this concise introduction to Domain-Driven Design, covering ubiquitous language, bounded contexts, and strategic design"
+  },
+  {
+    "id": "6",
+    "title": "Completed 'The 38 Letters from J.D. Rockefeller to his son'",
+    "category": "reading",
+    "date": "2026-07-07",
+    "description": "Finished reading this collection of letters from J.D. Rockefeller sharing timeless wisdom on business, wealth, discipline, and life"
   }
 ]
